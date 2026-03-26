@@ -1,4 +1,3 @@
----
 # configure static IP address (192.168.122.33) on enp1s0 interface using community.general.nmcli
 - name: Configure static IP address (192.168.122.33) on enp1s0 interface using
     community.general.nmcli
