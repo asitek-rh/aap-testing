@@ -1,6 +1,7 @@
 ---
 - name: This playbook will patch the RHEL OS
   hosts: all
+  become: true
   tasks:
     - name: To Update the RHEL OS
       ansible.builtin.package:
