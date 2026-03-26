@@ -10,3 +10,7 @@
     - name: List updated packages
       ansible.builtin.yum:
         list: updates
+    # Display updated packages using debug module
+    - name: Display updated packages using debug module
+      ansible.builtin.debug:
+        msg: "{{ _msg_ }}"
