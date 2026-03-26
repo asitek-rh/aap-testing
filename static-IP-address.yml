@@ -1,0 +1,18 @@
+---
+# configure static IP address (192.168.122.33) on enp1s0 interface using community.general.nmcli
+- name: Configure static IP address (192.168.122.33) on enp1s0 interface using
+    community.general.nmcli
+  community.general.nmcli:
+    conn_name: enp1s0
+    type: ethernet
+    ip4: 192.168.122.33/24
+    gw4: 192.168.122.1
+    state: present
+
+
+
+
+
+
+
+
