@@ -8,7 +8,7 @@
         device: /dev/sdb
         number: 1
         state: present
-        part_end: 2G
+        part_end: 2GiB
     - name: create vg
       community.general.lvg:
         vg: vg_data
