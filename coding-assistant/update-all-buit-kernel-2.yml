@@ -1,6 +1,7 @@
 ---
 - name: update all packages except kernel 2
   hosts: all
+  become: true
   tasks:
     - name: update all packages except kernel 2
       register: update
