@@ -1,0 +1,31 @@
+---
+- name: format disk
+  hosts: vms
+  become: true
+  tasks:
+    - name: create partition
+      community.general.parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        part_end: 2G
+    - name: create vg
+      community.general.lvg:
+        vg: vg_data
+        pvs: /dev/sdb1
+        state: present
+    - name: create lv
+      community.general.lvol:
+        vg: vg_data
+        lv: lv_backups
+        size: 100%FREE
+        state: present
+    - name: check if a reboot is required
+      ansible.builtin.command: /usr/bin/needs-restarting -r
+      register: reboot_required
+      changed_when: reboot_required.rc == 1
+      failed_when: reboot_required.rc == 2
+    - name: print message if system needs reboot
+      ansible.builtin.debug:
+        msg: Rebooting {{ inventory_hostname }}
+      when: reboot_required.rc == 1
