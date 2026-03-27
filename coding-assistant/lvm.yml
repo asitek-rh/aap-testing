@@ -5,14 +5,14 @@
   tasks:
     - name: create partition
       community.general.parted:
-        device: /dev/sdb
+        device: /dev/vdb
         number: 1
         state: present
         part_end: 2GiB
     - name: create vg
       community.general.lvg:
         vg: vg_data
-        pvs: /dev/sdb1
+        pvs: /dev/vdb1
         state: present
     - name: create lv
       community.general.lvol:
