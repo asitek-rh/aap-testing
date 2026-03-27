@@ -1,0 +1,17 @@
+---
+- name: update all packages except kernel 2
+  hosts: all
+  tasks:
+    - name: update all packages except kernel 2
+      register: update
+      ansible.builtin.package:
+        name: "*"
+        state: latest
+    - name: check if a reboot is required
+      ansible.builtin.shell:
+        cmd: if [ $(rpm -q kernel | sort -Vr | head -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; fi
+      register: reboot_required
+    - name: print message if system needs a restart
+      ansible.builtin.debug:
+        msg: Rebooting {{ inventory_hostname }}
+      when: reboot_required.stdout == "reboot"
