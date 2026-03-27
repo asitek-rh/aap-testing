@@ -1,6 +1,6 @@
 ---
 - name: format disk
-  hosts: vms
+  hosts: all
   become: true
   tasks:
     - name: create partition
