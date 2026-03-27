@@ -20,6 +20,11 @@
         lv: lv_backups
         size: 100%FREE
         state: present
+    - name: install yum-utils for needs-restarting
+      ansible.builtin.dnf:
+        name: yum-utils
+        state: present
+
     - name: check if a reboot is required
       ansible.builtin.command: /usr/bin/needs-restarting -r
       register: reboot_required
