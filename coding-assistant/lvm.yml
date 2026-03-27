@@ -20,6 +20,7 @@
         lv: lv_backups
         size: 100%FREE
         state: present
+        shrink: false
     - name: install yum-utils for needs-restarting
       ansible.builtin.dnf:
         name: yum-utils
